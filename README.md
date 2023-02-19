@@ -11,7 +11,6 @@ I have used the footballapi.com (https://www.api-football.com/)
 Soccerplots (https://pypi.org/project/soccerplots/)
 
 # Installation required
-- Seaborn
 - Matplotlib
 - pandas
 - Numpy
