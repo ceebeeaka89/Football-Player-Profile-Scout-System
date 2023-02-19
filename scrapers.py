@@ -9,7 +9,7 @@ class PlayerScraper:
         self._data = None
 
     def scrape(self):
-        # requesting data from the endpoint
+      
         return requests.get(
             self.endpoint,  # endpoint
             headers={"x-apisports-key": self.key},
