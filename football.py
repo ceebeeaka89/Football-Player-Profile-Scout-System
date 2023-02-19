@@ -1,6 +1,5 @@
 import pandas
 import matplotlib.pyplot as plt
-import seaborn as sns
 from scrapers import PlayerScraper
 from soccerplots.radar_chart import Radar
 
