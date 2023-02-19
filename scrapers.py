@@ -13,7 +13,7 @@ class PlayerScraper:
         return requests.get(
             self.endpoint,  # endpoint
             headers={"x-apisports-key": self.key},
-            params={"season": 2020,
+            params={"season": 2021,
                     "league":39}
         ).json()
 
@@ -35,7 +35,7 @@ class PlayerScraper:
             name = player_info["name"]
 
             player_stats_list = player_dict["statistics"]
-            player_stats = player_stats_list[0]  # number in brackets to get item from a list
+            player_stats = player_stats_list[0]  
 
             goal_data = player_stats["goals"]
             goals = goal_data["total"]
@@ -113,7 +113,7 @@ class FootballScraper:
         # requesting data from the endpoint
         return requests.get(
             self.endpoint,  # endpoint
-            headers={"x-apisports-key": self.key},  # hi, sorry, voice call is just loading. hello Tom
+            headers={"x-apisports-key": self.key},  
             params={"date": self.date}
         ).json()
 
@@ -152,7 +152,7 @@ class FootballScraper:
                 home = fixture["teams"]["home"]["name"]
                 away = fixture["teams"]["away"]["name"]
                 if fixture["goals"]["home"] is None:
-                    continue  # no match!
+                    continue  
 
                 score = str(fixture["goals"]["home"]) + "-" + str(fixture["goals"]["away"])
 
@@ -170,7 +170,7 @@ class FootballScraper:
         for fixture in all_fixtures:
             teams = fixture["teams"]
 
-            # get value of "winner" key in home and away dictionary
+            
             homewin = teams['home']['winner']
             awaywin = teams['away']['winner']
 
