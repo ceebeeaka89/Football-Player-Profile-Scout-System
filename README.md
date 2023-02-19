@@ -8,9 +8,9 @@ You can produce the results for top in both types.
 I have used the footballapi.com (https://www.api-football.com/)
 
 # Visualisation
-Soccerplots
+Soccerplots (https://pypi.org/project/soccerplots/)
 
-#installation reguired
+# Installation required
 - Seaborn
 - Matplotlib
 - pandas
