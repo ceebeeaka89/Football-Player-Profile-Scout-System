@@ -1,8 +1,8 @@
 # Football Scouting System
 
-This a football scouting system, based on premier league performance for seasons between 2017-2022. 
-The program allows you to scout for two types of strikers for your team : Target Man and Dribbler.
-You can produce the results for top in both types. 
+A football scouting system, based on premier league player performances for the seasons 2017 to 2022. 
+The program allows you to scout for two types of strikers for your team : Target Man and Dribbler based on a choosen season.
+You can produce the results for top performing player in both catagories. 
 
 # API
 I have used the footballapi.com (https://www.api-football.com/)
