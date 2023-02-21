@@ -12,6 +12,8 @@ df = playerstats.get_goals_assists_by_player()
 # dribbler : high dribbling, concedes fowls
 # ALL: played lots of games..!
 
+
+#creating the columns for the radar through a function
 def extra_columns(df):
     df["goals_per_game"] = df["goals"] / df["games"]
     df["assists_per_game"] = df["assists"] / df["games"]
@@ -32,6 +34,8 @@ def extra_columns(df):
 extra_columns(df)
 
 
+    #calling values for the radar through a function
+
 def plot_radars(df):
     ranks = df.copy()
 
@@ -40,7 +44,9 @@ def plot_radars(df):
     include = list(set(target_man_cols + dribbler_cols))
     print(include)
 
+    
     # add up the rank for each of these columns
+    
     ranks[include] = ranks[include].rank(method="dense", ascending=True)
     factor = len(df) / 10
     ranks[include] = ranks[include] / factor
@@ -48,7 +54,10 @@ def plot_radars(df):
     targetmen["ranksum"] = targetmen[target_man_cols].sum(axis=1)
     dribblers = ranks.loc[ranks["player type"] == "dribbler", include + ["name"]]
     dribblers["ranksum"] = dribblers[dribbler_cols].sum(axis=1)
-
+    
+    
+    #ranking for top target man and dribbler
+    
     targetmen = targetmen.sort_values("ranksum", ascending=False)
     dribblers = dribblers.sort_values("ranksum", ascending=False)
 
@@ -58,14 +67,13 @@ def plot_radars(df):
     top_dribbler = dribblers.iloc[0]
     top_dribbler_name = top_dribbler["name"]
     top_dribbler_values = top_dribbler[include]
-    print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+    
     print(targetmen)
-
-    print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
-
     print(dribblers)
-    print("################################")
-
+    
+    
+    #creating a range for the attributes
+    
     ranges = []
     targetman_value = []
     dribbler_value = []
@@ -80,6 +88,9 @@ def plot_radars(df):
         ranges.append((1, 10))
 
     print(ranges)
+
+    
+    # Adding visualise presentation for the radar plot
 
     T = dict(
         title_name=top_target_man_name,
@@ -96,42 +107,30 @@ def plot_radars(df):
 
     plt.rcParams["font.family"] = "Arial"
 
-    # Plotting the data
+  
     radar = Radar(fontfamily="Arial", background_color="black", patch_color="#28252C", label_color="white",
                   range_color="#BFE9BF")
+    
     fig, ax = radar.plot_radar(ranges=ranges, params=include, fontfamily="Arial",
                                values=S1, alphas=[0.76, 0.6],
-                               title=T, endnote="hello there noe", radar_color=['#0f4c75', '#e94560'], compare=True)
+                               title=T, endnote="Data from API Football", radar_color=['#0f4c75', '#e94560'], compare=True)
     plt.show()
 
 
+    pandas.set_option('display.max_columns', None)
+    plot_radars(df)
 
-pandas.set_option('display.max_columns', None)
-plot_radars(df)
-1 / 0
-params = ["goals_per_game", "assists_per_game", "duels_win_percent",
+
+    # Params is a variable that lists the attributes for the radar 
+
+    params = ["goals_per_game", "assists_per_game", "duels_win_percent",
           "dribble_percent", "duels_win_percent", "penalty scored per game"]
 
 
-
-pandas.set_option('display.max_columns', None)
-print(df)
-range()
-
-
-# plot_radars(df)
-
-def comparetogoals(df, y):
-    ax = sns.scatterplot(df, x="goals", y=y, hue="name")
-    plt.xlabel('Goals Scored')
-    plt.ylabel(y)
-    plt.title('Goals Scored vs Duels Won')
-
-    sns.move_legend(ax, "upper left", bbox_to_anchor=(1, 1))
-    plt.show()
+    pandas.set_option('display.max_columns', None)
+    print(df)
+    range()
 
 
-def top_goals_assists(df):
-    df.plot.bar(x="name", y=["goals", "assists"], figsize=(9, 8))
-    plt.show()
 
+    
